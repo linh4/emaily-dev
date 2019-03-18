@@ -1,18 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import Payment from './Payment'
 
 const Header = (props) => {
 
   const renderContent = () => {
-    console.log(props.auth)
     switch(props.auth) {
       case null:
         return
       case false:
         return <li><a href="/auth/google">Login With Google</a></li>
       default:
-        return <li><a href="/api/logout">Logout</a></li>
+        return [
+          <li key="1"><Payment/></li>,
+          <li key="3" style={{ margin: '0 10px' }}>Credits: {props.auth.credits}</li>,
+          <li key="2"><a href="/api/logout">Logout</a></li>]
     }
   }
 
